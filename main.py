@@ -5,7 +5,7 @@ import pandas as pd
 import openpyxl
 
 months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-year_start = 2007
+year_start = 2010
 year_end = 2023
 FILENAME = "Data2.xlsx"
 # Do not change -- acc to site reqs
@@ -84,7 +84,8 @@ try:
                         row_data.append(row_elements)
                 except Exception as e:
                     print(str(i) + " row xpath not found")
-                    continue
+                    if i > 1:
+                        break
 
                 if row_data:
                     # print(row_data)
