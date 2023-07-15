@@ -7,10 +7,13 @@ import openpyxl
 months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 year_start = 2007
 year_end = 2023
-FILENAME = "sorted_quantities.xlsx"
+FILENAME = "total.xlsx"
 # Do not change -- acc to site reqs
-countries = ["SAUDI ARAB", "U ARAB EMTS", "IRAQ", "OMAN", "KUWAIT", "QATAR", "NIGERIA"]
-country_DICT = {"SAUDI ARAB": [], "U ARAB EMTS": [], "IRAQ": [], "OMAN": [], "KUWAIT": [], "QATAR": [], "NIGERIA": []}
+countries = ["SAUDI ARAB", "U ARAB EMTS", "IRAQ", "OMAN", "KUWAIT", "QATAR", "NIGERIA", "Total"]
+country_DICT = {}
+for c in countries:
+    country_DICT[c] = []
+# country_DICT = {"SAUDI ARAB": [], "U ARAB EMTS": [], "IRAQ": [], "OMAN": [], "KUWAIT": [], "QATAR": [], "NIGERIA": [], "Total": []}
 table_row_start = 2
 table_row_end = 50
 
@@ -63,13 +66,13 @@ try:
             enter = driver.find_element(By.NAME, 'hscode')
             enter.send_keys("2709")
 
-            # # Button Press
-            # radio = driver.find_element(By.NAME, 'radiousd')
-            # radio.click()
-
             # Button Press
-            radio = driver.find_element(By.NAME, 'radioqty')
+            radio = driver.find_element(By.NAME, 'radiousd')
             radio.click()
+
+            # # Button Press
+            # radio = driver.find_element(By.NAME, 'radioqty')
+            # radio.click()
 
             # Button Press
             button = driver.find_element(By.NAME, 'button1')
