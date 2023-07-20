@@ -7,9 +7,12 @@ import openpyxl
 months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 year_start = 2007
 year_end = 2023
-FILENAME = "total.xlsx"
+FILENAME = "comp.xlsx"
 # Do not change -- acc to site reqs
-countries = ["SAUDI ARAB", "U ARAB EMTS", "IRAQ", "OMAN", "KUWAIT", "QATAR", "NIGERIA", "Total"]
+countries = ["SAUDI ARAB", "U ARAB EMTS", "IRAQ", "OMAN", "KUWAIT", "QATAR",
+             "TURKEY", "UKRAINE", "VENEZUELA", "YEMEN REPUBLIC", "LIBERIA",
+             "U S A", "SYRIA", "BRAZIL", "EGYPT A RP", "MALAYSIA", "COLOMBIA",
+             "NIGERIA", "RUSSIA", "IRAN", "MEXICO", "SUDAN", "Total"]
 country_DICT = {}
 for c in countries:
     country_DICT[c] = []
@@ -149,7 +152,15 @@ try:
             workbook.save(FILENAME)
 
 except Exception as e:
-    workbook.save(FILENAME)
+    for nation, data in country_DICT.items():
+        print(data)
+        if nation not in workbook.sheetnames:
+            workbook.create_sheet(title=nation)
+            workbook.save(FILENAME)
+        sheet = workbook[nation]
+        for d in data:
+            sheet.append(d)
+            workbook.save(FILENAME)
     print("Scrape aborted --Saving")
     print(e)
 
